@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "canisters": {
+    "todo_list_backend": {
+      "type": "rust",
+      "package": "todo_list_backend",
+      "candid": "src/todo_list_backend/todo_list_backend.did"
+    }
+  },
+  "output_env_file": ".env"
+}

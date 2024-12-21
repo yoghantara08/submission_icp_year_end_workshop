@@ -1,0 +1,31 @@
+type Error = variant {
+  InvalidInput : record { msg : text };
+  NotFound : record { msg : text };
+};
+type Priority = variant { Low; High; Medium; Urgent };
+type Result = variant { Ok : Todo; Err : Error };
+type TaskStatus = variant { InProgress; Completed; Pending };
+type Todo = record {
+  id : nat64;
+  status : TaskStatus;
+  title : text;
+  updated_at : opt nat64;
+  owner : text;
+  description : text;
+  created_at : nat64;
+  due_date : opt nat64;
+  priority : Priority;
+};
+type TodoPayload = record {
+  title : text;
+  description : text;
+  due_date : opt nat64;
+  priority : Priority;
+};
+service : {
+  add_todo : (TodoPayload) -> (Result);
+  delete_todo : (nat64) -> (Result);
+  get_todo : (nat64) -> (Result) query;
+  update_status : (nat64, TaskStatus) -> (Result);
+  update_todo : (nat64, TodoPayload) -> (Result);
+}
